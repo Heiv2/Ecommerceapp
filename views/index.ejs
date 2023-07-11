@@ -1,6 +1,16 @@
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
-<p>Product name is <%= product.name %></p>
-<p>Image link is <%= productImg %></p>
-<img src="<%= productImg %>" alt="">
-
+<div class="center-screen">
+    <div class="card">
+        <img src="/images/categories/womens-clothing.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Welcome to Our E-commerce Store!</h5>
+            <p class="card-text">Here you can find a variety of products for both men and women. Choose a category to
+                start shopping!</p>
+            <a href="/category/<%= category[0].id %>" class="btn btn-primary">
+                <%= category[0].name %>
+            </a>
+            <a href="/category/<%= category[1].id %>" class="btn btn-primary">
+                <%= category[1].name %>
+            </a>
+        </div>
+    </div>
+</div>

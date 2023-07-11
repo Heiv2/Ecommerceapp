@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <% let count=0; %>
+            <% products.forEach(function(product) { %>
+                <% if(count % 2===0 && count !==0) { %>
+    </div>
+    <div class="row">
+        <% } %>
+            <div class="col-md-6 product-container">
+                <img src="/images/<%= product.image_groups[0].images[0].link %>"
+                    alt="<%= product.image_groups[0].images[0].alt %>">
+                <div class="product-details">
+                    <h2 class="product-name">
+                        <%= product.name %>
+                    </h2>
+                    <p>
+                        <%= product.page_description %>
+                    </p>
+                    <div class="price-info">
+                        <p>Price: <%= product.price %>$</p>
+                        <button type="button" class="btn btn-info">
+                            <a href="/product/<%= product._id %>">More Info</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <% count++; %>
+                <% }); %>
+    </div>
+</div>

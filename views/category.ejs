@@ -1,0 +1,30 @@
+<h1>
+    <%= category.name %>
+</h1>
+<p>
+    <%= category.page_description %>
+</p>
+<% if (category.categories) { %>
+    <% for(let subcategory of category.categories) { %>
+        <div>
+            <h2>
+                <%= subcategory.name %>
+            </h2>
+            <img src="/images/<%= subcategory.image %>" alt="<%= subcategory.name %>">
+            <p>
+                <%= subcategory.page_description %>
+            </p>
+            <% if (subcategory.categories) { %>
+                <form action="/categories/<%= subcategory.id %>">
+                    <input type="hidden" value="<%= category.id %>" name="rootCat">
+                    <button type="submit">Go to Subcategory</button>
+                </form>
+                <% } else { %>
+                    <form action="/products/<%= subcategory.id %>">
+                        <button type="submit">View Products</button>
+                    </form>
+                    <% } %>
+                        <br>
+        </div>
+        <% } %>
+            <% } %>

@@ -1,0 +1,23 @@
+<h1>
+    <%= product.name %>
+</h1>
+<div class="products-container">
+    <img class="products-image" src="/images/<%= product.image_groups[0].images[0].link %>"
+        alt="<%= product.image_groups[0].images[0].alt %>">
+    <div class="products-details">
+        <p>
+            <%= product.page_description %>
+        </p>
+        <div class="buy-price-container">
+            <button class="buy-button">Buy Now</button>
+            <p>Price: <%= product.price %>$
+                    <select class="currency-select">
+                        <option value="USD" selected>USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <!-- More currency options can be added here -->
+                    </select>
+            </p>
+        </div>
+    </div>
+</div>
