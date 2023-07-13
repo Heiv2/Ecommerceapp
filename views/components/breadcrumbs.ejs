@@ -1,0 +1,5 @@
+<% for(let i = 0; i < breadcrumbs.length; i++) { %>
+    <a href="<%= breadcrumbs[i].url %>">
+        <%= breadcrumbs[i].name %><%= i < breadcrumbs.length - 1 ? '/' : '' %>
+    </a>
+<% } %>

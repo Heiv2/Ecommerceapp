@@ -1,41 +1,32 @@
+"use strict";
+
 const Category = require('../models/category');
 
 exports.getCategoryById = async function (req, res) {
-  const categoryId = req.params.categoryId;
-  try {
-    const category = await Category.findOne({ id: categoryId });
-    res.render('category', {
-      title: category.page_title,
-      category: category
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).send("Internal Server Error");
-  }
-};
-exports.getCategoryByName = async (req, res, next) => {
-  try {
-    const categoryName = req.params.categoryName;
-    console.log(req.query.rootCat);
-    console.log('Searching for category:', categoryName);
+    const categoryId = req.params.categoryId;
+    const proxyHost = req.headers["x-forwarded-host"];
+    const host = proxyHost ? proxyHost : req.headers.host;
+    try {
+        const category = await Category.findOne({ id: req.query.rootCat || categoryId });
 
-    const category = await Category.findOne({ id: req.query.rootCat });
-    const foundCategory = category.categories.find(element => categoryName == element.id
+        const foundCategory = req.query.rootCat ? category.categories.find(element => categoryId == element.id) : category;
+        if (!foundCategory) {
+            return res.status(404).send('Category not found');
+        }
+        if (foundCategory.parent_category_id == "root") {
+            req.breadcrumbs(categoryId);
+        } else {
+            req.breadcrumbs(foundCategory.parent_category_id, "http://" + host + "/category/" + foundCategory.parent_category_id)
+            req.breadcrumbs(categoryId);
+        }
 
-    );
-    if (!foundCategory) {
-      return res.status(404).send('Category not found');
+        res.render('category', {
+            title: foundCategory.page_title,
+            category: foundCategory,
+            breadcrumbs: req.breadcrumbs()
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Internal Server Error");
     }
-
-    console.log('Found category:', foundCategory.id);
-
-    if (category.categories && category.categories.length > 0) {
-      return res.render('category', { title: foundCategory.page_title, category: foundCategory });
-    } else {
-      return res.render('category', { category: category });
-    }
-
-  } catch (err) {
-    return next(err);
-  }
 };

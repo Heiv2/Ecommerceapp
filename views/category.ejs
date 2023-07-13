@@ -15,7 +15,7 @@
                 <%= subcategory.page_description %>
             </p>
             <% if (subcategory.categories) { %>
-                <form action="/categories/<%= subcategory.id %>">
+                <form action="/category/<%= subcategory.id %>">
                     <input type="hidden" value="<%= category.id %>" name="rootCat">
                     <button type="submit">Go to Subcategory</button>
                 </form>

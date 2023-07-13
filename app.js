@@ -1,10 +1,10 @@
 const express = require('express');
 const path = require('path');
-var bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 const expressLayouts = require('express-ejs-layouts');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
-const ejs = require('ejs');
+const breadcrumbs = require('express-breadcrumbs');
 const mongoose = require('mongoose');
 const fetchCategories = require('./middlewares/categories');
 
@@ -23,6 +23,8 @@ app.use(bodyParser.json())
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressLayouts);
+app.use(breadcrumbs.init());
+app.use("/",breadcrumbs.setHome());
 app.set('layout', 'layout');
 
 //Routes

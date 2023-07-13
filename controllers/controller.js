@@ -12,7 +12,8 @@ const test = async (req, res) => {
 
         res.render("index", {
             title: 'Category Details',
-            category: categories
+            category: categories,
+            breadcrumbs: req.breadcrumbs()
         });
     } catch (error) {
         console.error(error);
