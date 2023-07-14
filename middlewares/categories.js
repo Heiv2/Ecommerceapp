@@ -7,7 +7,6 @@ const fetchCategories = async (req, res, next) => {
             return next();
         }
 
-
         const categoryDetails = categories.map(category => {
             return { name: category.name, id: category.id };
         });

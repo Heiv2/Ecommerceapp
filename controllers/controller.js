@@ -1,6 +1,7 @@
 const fetchCategories = require('../middlewares/categories');
 const Category = require('../models/category');
-const test = async (req, res) => {
+
+const home = async (req, res) => {
     try {
         // Add this line
         await fetchCategories(req, res, () => { });
@@ -22,5 +23,5 @@ const test = async (req, res) => {
 };
 
 module.exports = {
-    test: test
+    home: home
 };
