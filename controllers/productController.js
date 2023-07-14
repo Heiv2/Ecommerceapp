@@ -49,11 +49,31 @@ exports.getSingleProduct = async function (req, res) {
       req.breadcrumbs(id);
     }
 
+    const soapClient = req.app.get('soapClient');
+    const result = await soapClient.getallAsync({ dt: '2023-05-12' });
 
-    console.log(product);
+    let ronToEur = 0;
+    let ronToTry = 0;
+
+    const currencies = result[0].getallResult.diffgram.DocumentElement.Currency;
+    for (let i = 0; i < currencies.length; i++) {
+      if (currencies[i].IDMoneda === 'EUR') {
+        ronToEur = 1 / currencies[i].Value;
+      } else if (currencies[i].IDMoneda === 'TRY') {
+        ronToTry = 1 / currencies[i].Value;
+      }
+    }
+
+    const eurPrice = product.price * ronToEur;
+    const tryPrice = product.price * ronToTry;
+    console.log(tryPrice);
+
+
     res.render('productDetails', {
       title: product.name,
       product: product,
+      eurPrice: eurPrice,
+      tryPrice: tryPrice,
       breadcrumbs: req.breadcrumbs()
     });
   } catch (err) {

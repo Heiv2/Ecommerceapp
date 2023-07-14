@@ -10,14 +10,36 @@
         </p>
         <div class="buy-price-container">
             <button class="buy-button">Buy Now</button>
-            <p>Price: <%= product.price %>$
-                    <select class="currency-select">
-                        <option value="USD" selected>USD</option>
-                        <option value="EUR">EUR</option>
-                        <option value="GBP">GBP</option>
-                        <!-- More currency options can be added here -->
-                    </select>
+            <p>Price: <span id="price"><%= product.price %></span>
+                <select class="currency-select" onchange="changeCurrency(this.value);">
+                    <option value="RON" selected>RON</option>
+                    <option value="EUR">EUR</option>
+                    <option value="TRY">TRY</option>
+                    <!-- More currency options can be added here -->
+                </select>
             </p>
         </div>
     </div>
 </div>
+<script>
+    var ronPrice = Number('<%= product.price %>');
+    var eurPrice = Number('<%= eurPrice %>');
+    var tryPrice = Number('<%= tryPrice %>');
+
+    function changeCurrency(currency) {
+        var priceElement = document.getElementById('price');
+
+        switch(currency) {
+            case 'EUR':
+                priceElement.innerText = eurPrice.toFixed(2);
+                break;
+            case 'TRY':
+                priceElement.innerText = tryPrice.toFixed(2);
+                break;
+            case 'RON':
+                priceElement.innerText = ronPrice.toFixed(2);
+                break;
+            // add more cases here for more currencies
+        }
+    }
+</script>

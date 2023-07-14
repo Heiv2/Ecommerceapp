@@ -16,7 +16,8 @@
     "express-breadcrumbs": "^0.0.2",
     "express-ejs-layouts": "^2.5.1",
     "mongoose": "^7.3.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "soap": "^1.0.0"
   },
   "devDependencies": {
     "dotenv": "^16.3.1",
