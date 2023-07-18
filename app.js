@@ -11,8 +11,10 @@ const soap = require('soap');
 const url = 'http://infovalutar.ro/curs.asmx?wsdl';
 const app = express();
 
-// requires
+// required modules
 require("dotenv").config();
+const connectDB = require('./config/db');
+const initializeSoapClient = require('./config/soapClient');    
 
 // EJS
 app.set('views', path.join(__dirname, 'views'));
@@ -42,26 +44,11 @@ app.use(firstRouter);
 const authRouter = require('./routes/auth');
 app.use(authRouter);
 
-//Soap
-let soapClient;
-async function initializeSoapClient() {
-    try {
-        soapClient = await soap.createClientAsync(url);
-        app.set('soapClient', soapClient);
-        console.log('SOAP Client is ready to be used');
-    } catch (err) {
-        console.error(err);
-    }
-}
-
-initializeSoapClient();
-
-//Database Connection 
-const DbUrl = `mongodb+srv://ekozdemir12:${process.env.MONGO_PASSWORD}@cluster0.b9q5ocj.mongodb.net/shop`;
-
-mongoose.connect(DbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Connected to MongoDB...'))
-    .catch(err => console.error('Could not connect to MongoDB...', err));
+// Initialize  connections
+connectDB();
+initializeSoapClient().then(soapClient => {
+    app.set('soapClient', soapClient);
+});
 
 app.listen(3000, () => console.log('Server is started...'));
 
