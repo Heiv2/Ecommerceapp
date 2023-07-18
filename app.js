@@ -5,14 +5,12 @@ const expressLayouts = require('express-ejs-layouts');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const breadcrumbs = require('express-breadcrumbs');
-const mongoose = require('mongoose');
 const fetchCategories = require('./middlewares/categories');
-const soap = require('soap');
-const url = 'http://infovalutar.ro/curs.asmx?wsdl';
+
 const app = express();
 
 // required modules
-require("dotenv").config();
+require('dotenv').config();
 const connectDB = require('./config/db');
 const initializeSoapClient = require('./config/soapClient');    
 
@@ -27,15 +25,15 @@ app.use(cookieParser());
 
 //
 app.use(fetchCategories);
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 // Breadcrumb
 app.use(expressLayouts);
 app.use(breadcrumbs.init());
-app.use("/", breadcrumbs.setHome());
+app.use('/', breadcrumbs.setHome());
 app.set('layout', 'layout');
 
 //Routes
@@ -47,7 +45,7 @@ app.use(authRouter);
 // Initialize  connections
 connectDB();
 initializeSoapClient().then(soapClient => {
-    app.set('soapClient', soapClient);
+	app.set('soapClient', soapClient);
 });
 
 app.listen(3000, () => console.log('Server is started...'));
