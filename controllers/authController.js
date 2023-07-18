@@ -1,5 +1,5 @@
 "use strict";
-const userModel = require('../models/products');
+
 const User = require('../models/users');
 
 // handle errors
@@ -22,7 +22,6 @@ const handleErrors = (err) => {
 }
 
 exports.userSignup_get = function(req,res){
-
    req.breadcrumbs("Registration");
    res.render("signUp",{
     title:"SignUp Page",
@@ -44,7 +43,6 @@ exports.userSignup_post = async function(req,res){
       
    }
    catch (err){  
-      
       const errors = handleErrors(err);
       res.status(400).json({ errors });
    }

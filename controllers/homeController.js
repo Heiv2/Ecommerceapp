@@ -1,7 +1,6 @@
 "use strict";
 
 const fetchCategories = require('../middlewares/categories');
-const Category = require('../models/category');
 
 const home = async (req, res) => {
     try {
