@@ -1,5 +1,6 @@
+"use strict";
+
 const Products = require('../models/products');
-const Category = require('../models/category');
 
 exports.getplpById = async function (req, res) {
     const cid = req.params.cid;

@@ -24,27 +24,39 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Nodejs App</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <% categories.forEach(category=> { %>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/category/<%= category.id %>">
-                            <%= category.name %>
-                        </a>
-                    </li>
-                <% }); %>
-            </ul>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Nodejs App</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <% categories.forEach(category=> { %>
+                        <li class="nav-item mr-3">
+                            <a class="nav-link" href="/category/<%= category.id %>">
+                                <%= category.name %>
+                            </a>
+                        </li>
+                    <% }); %>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 ml-auto">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                        <input type="password" class="form-control ml-2" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2">
+                    </div>
+                    <button class="btn btn-success my-2 my-sm-0 ml-2" type="submit">Login</button>
+                    <a href="/signUp" class="btn btn-primary my-2 my-sm-0 ml-2">Register</a>
+                </form>
+            </div>
+        </nav>
+        <div class="container">
+            <% if(breadcrumbs!="undefined" ) { %>
+                <div class="mt-4 mb-4">
+                    <%- include('components/breadcrumbs') %>
+                </div>
+            <% } %>
+            <%- body %>
         </div>
-    </nav>
-    <div class="container">
-        <% if(breadcrumbs!="undefined" ) { %>
-            <%- include('components/breadcrumbs') %>
-        <% } %>
-        <%- body %>
-    </div>
-    <%- include('components/footer') %>
+        <%- include('components/footer') %>
+    </body>
 </body>
 
 </html>

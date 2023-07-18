@@ -6,6 +6,7 @@ exports.getCategoryById = async function (req, res) {
     const categoryId = req.params.categoryId;
     const proxyHost = req.headers["x-forwarded-host"];
     const host = proxyHost ? proxyHost : req.headers.host;
+
     try {
         const category = await Category.findOne({ id: req.query.rootCat || categoryId });
 
@@ -13,6 +14,7 @@ exports.getCategoryById = async function (req, res) {
         if (!foundCategory) {
             return res.status(404).send('Category not found');
         }
+        
         if (foundCategory.parent_category_id == "root") {
             req.breadcrumbs(categoryId);
         } else {
