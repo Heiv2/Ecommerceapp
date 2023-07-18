@@ -11,6 +11,7 @@ const soap = require('soap');
 const url = 'http://infovalutar.ro/curs.asmx?wsdl';
 const app = express();
 
+// requires
 require("dotenv").config();
 
 // EJS

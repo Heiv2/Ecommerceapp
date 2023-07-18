@@ -11,7 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
@@ -24,6 +24,7 @@
 </head>
 
 <body>
+
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="/">Nodejs App</a>
@@ -35,12 +36,14 @@
                                 <%= category.name %>
                             </a>
                         </li>
-                    <% }); %>
+                        <% }); %>
                 </ul>
                 <form class="form-inline my-2 my-lg-0 ml-auto">
                     <div class="input-group">
-                        <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
-                        <input type="password" class="form-control ml-2" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2">
+                        <input type="email" class="form-control" placeholder="Email" aria-label="Email"
+                            aria-describedby="basic-addon1">
+                        <input type="password" class="form-control ml-2" placeholder="Password" aria-label="Password"
+                            aria-describedby="basic-addon2">
                     </div>
                     <button class="btn btn-success my-2 my-sm-0 ml-2" type="submit">Login</button>
                     <a href="/signUp" class="btn btn-primary my-2 my-sm-0 ml-2">Register</a>
@@ -52,8 +55,8 @@
                 <div class="mt-4 mb-4">
                     <%- include('components/breadcrumbs') %>
                 </div>
-            <% } %>
-            <%- body %>
+                <% } %>
+                    <%- body %>
         </div>
         <%- include('components/footer') %>
     </body>
