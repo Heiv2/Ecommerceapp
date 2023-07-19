@@ -123,3 +123,15 @@ hr {
   margin-bottom: 30px;
   /* Adds extra space before the Register button */
 }
+
+.email-error{
+  color: red;
+}
+
+.log-out{
+  margin-left: 10px;
+}
+
+.welcome{
+  color:#FFC107;
+}

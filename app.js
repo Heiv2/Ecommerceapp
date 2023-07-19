@@ -4,15 +4,24 @@ const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const breadcrumbs = require('express-breadcrumbs');
 const fetchCategories = require('./middlewares/categories');
+require('dotenv').config();
+const { checkUser } = require('./middlewares/userCheck');
 
 const app = express();
 
+// Setting the Session
+app.use(session({
+	secret: process.env.SESSION_SECRET,
+	resave: false,
+	saveUninitialized: true,
+}));
+  
 // required modules
-require('dotenv').config();
 const connectDB = require('./config/db');
-const initializeSoapClient = require('./config/soapClient');    
+const initializeSoapClient = require('./config/soapClient');
 
 // EJS
 app.set('views', path.join(__dirname, 'views'));
@@ -35,6 +44,8 @@ app.use(expressLayouts);
 app.use(breadcrumbs.init());
 app.use('/', breadcrumbs.setHome());
 app.set('layout', 'layout');
+
+app.get('*', checkUser);
 
 //Routes
 const firstRouter = require('./routes/product');

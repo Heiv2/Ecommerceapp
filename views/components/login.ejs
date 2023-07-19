@@ -1,10 +1,19 @@
-<form class="form-inline my-2 my-lg-0 ml-auto">
-    <div class="input-group">
-        <input type="email" class="form-control" placeholder="Email" aria-label="Email"
-            aria-describedby="basic-addon1">
-        <input type="password" class="form-control ml-2" placeholder="Password" aria-label="Password"
-            aria-describedby="basic-addon2">
-    </div>
-    <button class="btn btn-success my-2 my-sm-0 ml-2" type="submit">Login</button>
-    <a href="/signUp" class="btn btn-primary my-2 my-sm-0 ml-2">Register</a>
+<form id="myloginform" class="form-inline my-2 my-lg-0 ml-auto" action="/logIn" method="post">
+    <% if (user) { %>
+        <div class="welcome">Welcome <%= user.email %></div>
+        <a href="/logOut" class="log-out btn btn-warning">LogOut</a>
+    <% } else { %>   
+        <div class="input-group d-flex">
+            <span class="login-email-error text-danger mr-2"></span> <!-- Güncellendi -->
+            <span class="login-password-error text-danger mr-2"></span> <!-- Ekledi -->
+            <input id="input-email" type="email" class="form-control" placeholder="Email" aria-label="Email"
+                aria-describedby="basic-addon1">
+            <input id="input-password" type="password" class="form-control ml-2" placeholder="Password" aria-label="Password"
+                aria-describedby="basic-addon2">
+        </div>
+        <button class="btn btn-success my-2 my-sm-0 ml-2" type="submit">Login</button>
+        <a href="/signUp" class="btn btn-primary my-2 my-sm-0 ml-2">Register</a>
+    <% } %>
 </form>
+
+<script src="/javascripts/logIn.js"></script>

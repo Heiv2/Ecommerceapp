@@ -1,12 +1,12 @@
 $('#myform').on('submit', function (e) {
 	e.preventDefault();
 
-	let email = $('#exampleInputEmail1').val();
-	let password = $('#exampleInputPassword1').val();
+	let email = $('#signup-email').val();
+	let password = $('#signup-password').val();
 	let confirmPassword = $('#exampleInputPassword2').val();
 
-	const $emailError = $('.email-error');
-	const $passwordError = $('.password-error');
+	const $emailError = $('.signup-email-error');
+	const $passwordError = $('.signup-password-error');
 
 	// Clear previous error messages
 	$emailError.text('');

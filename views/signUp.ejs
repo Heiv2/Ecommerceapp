@@ -1,25 +1,25 @@
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <form id="myform" style="width: 1000px">
+    <form id="myform" style="width: 1000px" action="/logIn" method="post">
         <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="text" name="email" required class="form-control" id="exampleInputEmail1"
+            <label for="signup-email">Email address</label>
+            <input type="text" name="email" required class="form-control" id="signup-email"
                 aria-describedby="emailHelp" placeholder="Enter email">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
-        <div class="error-message email-error"></div>
+        <div class="error-message signup-email-error email-error"></div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" name="password" required class="form-control" id="exampleInputPassword1"
+            <label for="signup-password">Password</label>
+            <input type="password" name="password" required class="form-control" id="signup-password"
                 placeholder="Password">
         </div>
-        <div class="error-message password-error"></div>
+        <div class="error-message signup-password-error password-error"></div>
         <div class="form-group">
             <label for="exampleInputPassword2">Confirm Password</label>
             <input type="password" name="confirmpassword" required class="form-control" id="exampleInputPassword2"
                 placeholder="Confirm Password">
         </div>
         <div class="error-message password-error last-error-message"></div>
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 
