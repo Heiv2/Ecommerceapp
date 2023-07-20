@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -7,7 +8,6 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const breadcrumbs = require('express-breadcrumbs');
 const fetchCategories = require('./middlewares/categories');
-require('dotenv').config();
 const { checkUser } = require('./middlewares/userCheck');
 
 const app = express();
