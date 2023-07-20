@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const DbUrl = `mongodb+srv://ekozdemir12:${process.env.MONGO_PASSWORD}@cluster0.b9q5ocj.mongodb.net/shop`;
+const DbUrl = `${process.env.MONGO_URL}`;
 
 const connectDB = async () => {
 	try {
