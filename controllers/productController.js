@@ -6,9 +6,15 @@ exports.getplpById = async function (req, res) {
 	const cid = req.params.cid;
 	const proxyHost = req.headers['x-forwarded-host'];
 	const host = proxyHost ? proxyHost : req.headers.host;
-    
+
+	const page = parseInt(req.query.page) || 1;
+	const limit = 6;
+	const skip = (page - 1) * limit;
+
 	try {
-		const products = await Products.find({ primary_category_id: cid });
+		const products = await Products.find({ primary_category_id: cid }).skip(skip).limit(limit);
+		const total = await Products.countDocuments({ primary_category_id: cid });
+
 		const categoryId = products[0].primary_category_id.split('-');
 
 		if (categoryId[0] == 'root') {
@@ -19,10 +25,19 @@ exports.getplpById = async function (req, res) {
 			req.breadcrumbs(categoryId.join('-'));
 		}
 
+		const pages = Math.ceil(total / limit);
+
 		res.render('productsByCid', {
 			title: 'Products Page',
 			products: products,
-			breadcrumbs: req.breadcrumbs()
+			breadcrumbs: req.breadcrumbs(),
+			currentPage: page,
+			pages: pages,
+			hasPreviousPage: page > 1,
+			hasNextPage: page < pages,
+			nextPage: page + 1,
+			previousPage: page - 1,
+			lastPage: pages
 		});
 	} catch (err) {
 		console.log(err);
