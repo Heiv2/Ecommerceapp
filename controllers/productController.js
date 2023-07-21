@@ -36,8 +36,7 @@ exports.getplpById = async function (req, res) {
 			hasPreviousPage: page > 1,
 			hasNextPage: page < pages,
 			nextPage: page + 1,
-			previousPage: page - 1,
-			lastPage: pages
+			previousPage: page - 1
 		});
 	} catch (err) {
 		console.log(err);
