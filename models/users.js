@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const {isEmail} = require('validator');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
@@ -9,13 +8,23 @@ const userSchema = new Schema({
 		required: [true, 'Please enter an email'],
 		unique: true,
 		lowercase: true,
-		validate: [isEmail,'Please enter a valid email']
+		validate: {
+			validator: function (value) {
+				return /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value);
+			},
+			message: (props) => `${props.value} is not a valid email address!`,
+		},
 	},
 	password: {
 		type: String,
-		required: [true, 'Please enter a password'],
-		minlength: [6, 'Minimum password length is 6 characters'],
-	}
+		required: true,
+		validate: {
+			validator: function(value) {
+				return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(value);
+			},
+			message: () => 'Password should be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.',
+		},
+	},
 }, { collection: 'User' });
 
 userSchema.pre('save', async function(next){

@@ -16,7 +16,7 @@ const handleErrors = (err) => {
 	// incorrect email
 	if (err.message === 'Incorrect Email Entered') {
 		errors.email = 'That Email is not registered';
-	}
+	}		
 
 	// incorrect password
 	if (err.message === 'Incorrect Password') {
@@ -29,8 +29,17 @@ const handleErrors = (err) => {
 			errors[properties.path] = properties.message;
 		});
 	}
+	
+	// Mongoose validation errors for password and email regex
+	if (err.name === 'ValidationError') {
+		Object.values(err.errors).forEach(({properties}) => {
+			errors[properties.path] = properties.message;
+		});
+	}
+	
 	return errors;
 };
+
 
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = (id) => {
