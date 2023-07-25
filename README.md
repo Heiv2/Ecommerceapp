@@ -7,11 +7,10 @@ This project is an E-Commerce web application built on Node.js, leveraging the p
 
 <p><strong>Node.js:</strong></p>
 Node.js is a powerful JavaScript runtime built on Chrome's V8 JavaScript engine. It is used for developing server-side and networking applications. In this project, it serves as the backbone of our server-side logic, handling requests and responses between the client and the server.
-<br>
 
 <p><strong>Express.js:</strong></p>
 Express.js is a minimal, fast, and unopinionated web application framework for Node.js. It provides a simple way to manage routes, handle requests, and send responses. In this application, Express.js manages all the routes for the different pages and API endpoints.
-<br>
+
 
 <p><strong>EJS (Embedded JavaScript Templating):</strong></p>
 EJS is a simple templating language that generates HTML markup with plain JavaScript. It allows the server-side rendering of JavaScript into HTML, providing a seamless user interface for the client. In this project, EJS is used for creating dynamic HTML templates for the different views in the application.
