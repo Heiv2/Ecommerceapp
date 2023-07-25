@@ -67,7 +67,7 @@ Here are the steps you can follow to run this application on your local machine:
 
 7. **Start the server**
     ```
-    npm start
+    npm run devStart
     ```
     Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
