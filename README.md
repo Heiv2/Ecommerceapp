@@ -1,7 +1,7 @@
 # Nodejs-Ecommerce-App
 
 ## Description
-This project is an E-Commerce web application built on Node.js, leveraging the power of modern web technologies such as Express.js, EJS, HTML, CSS, Bootstrap, and MongoDB. It provides a comprehensive online shopping experience, where users can browse products, add them to their cart, and proceed to checkout.
+This project is an E-Commerce web application built on Node.js, leveraging the power of modern web technologies such as Express.js, EJS, HTML, CSS, Bootstrap, and MongoDB. It provides a comprehensive online shopping experience, where users can browse products, register and log in.
 
 ## Features
 <p>This E-commerce application has several key features:</p>
