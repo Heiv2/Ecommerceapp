@@ -3,26 +3,6 @@
 ## Description
 This project is an E-Commerce web application built on Node.js, leveraging the power of modern web technologies such as Express.js, EJS, HTML, CSS, Bootstrap, and MongoDB. It provides a comprehensive online shopping experience, where users can browse products, add them to their cart, and proceed to checkout.
 
-## Technologies
-
-### Node.js
-Node.js is a powerful JavaScript runtime built on Chrome's V8 JavaScript engine. It is used for developing server-side and networking applications. In this project, it serves as the backbone of our server-side logic, handling requests and responses between the client and the server.
-
-### Express.js
-Express.js is a minimal, fast, and unopinionated web application framework for Node.js. It provides a simple way to manage routes, handle requests, and send responses. In this application, Express.js manages all the routes for the different pages and API endpoints.
-
-### EJS (Embedded JavaScript Templating)
-EJS is a simple templating language that generates HTML markup with plain JavaScript. It allows the server-side rendering of JavaScript into HTML, providing a seamless user interface for the client. In this project, EJS is used for creating dynamic HTML templates for the different views in the application.
-
-### HTML/CSS
-HTML (HyperText Markup Language) is the standard markup language for documents designed to be displayed in a web browser. CSS (Cascading Style Sheets) is a style sheet language used for describing the look and formatting of a document written in HTML. They are used together in this project to create and style the web pages.
-
-### Bootstrap
-Bootstrap is the most popular CSS framework for developing responsive and mobile-first websites. It provides pre-designed components, which allows faster and easier web development. In this project, Bootstrap is used to ensure the app is mobile-friendly and to provide a clean, intuitive, and sleek user interface.
-
-### MongoDB
-MongoDB is a source-available cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas. It is used in this application as the primary database to store and retrieve data about users, products, and transactions.
-
 ## Features
 <p>This E-commerce application has several key features:</p>
 
