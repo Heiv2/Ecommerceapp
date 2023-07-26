@@ -1,25 +1,49 @@
 <div class="container">
+    <!-- Your products listing -->
+</div>
+
+<div class="container">
     <nav>
         <ul class="pagination">
             <% if (hasPreviousPage) { %>
                 <li class="page-item">
+                    <a class="page-link" href="?page=1">First</a>
+                </li>
+                <li class="page-item">
                     <a class="page-link" href="?page=<%= previousPage %>">Previous</a>
                 </li>
-                <% } %>
+            <% } %>
 
-                    <% for(let i=1; i <=pages; i++){ %>
-                        <li class="page-item <% if(currentPage == i) { %>active<% } %>">
-                            <a class="page-link" href="?page=<%= i %>">
-                                <%= i %>
-                            </a>
-                        </li>
-                        <% } %>
+            <% const maxPagesToShow = 10; %>
+            <% const pagesBefore = Math.min(currentPage - 1, Math.floor(maxPagesToShow / 2)); %>
+            <% const pagesAfter = Math.min(pages - currentPage, maxPagesToShow - pagesBefore - 1); %>
 
-                            <% if (hasNextPage) { %>
-                                <li class="page-item">
-                                    <a class="page-link" href="?page=<%= nextPage %>">Next</a>
-                                </li>
-                                <% } %>
+            <% if (currentPage - pagesBefore > 1) { %>
+                <li class="page-item disabled">
+                    <span class="page-link">...</span>
+                </li>
+            <% } %>
+
+            <% for(let i = currentPage - pagesBefore; i <= currentPage + pagesAfter; i++){ %>
+                <li class="page-item <% if(currentPage == i) { %>active<% } %>">
+                    <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                </li>
+            <% } %>
+
+            <% if (currentPage + pagesAfter < pages) { %>
+                <li class="page-item disabled">
+                    <span class="page-link">...</span>
+                </li>
+            <% } %>
+
+            <% if (hasNextPage) { %>
+                <li class="page-item">
+                    <a class="page-link" href="?page=<%= nextPage %>">Next</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page=<%= pages %>">Last</a>
+                </li>
+            <% } %>
         </ul>
     </nav>
 </div>
