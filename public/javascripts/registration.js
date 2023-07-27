@@ -23,6 +23,10 @@ $('#myform').on('submit', function (e) {
 		url: '/signUp',
 		data: JSON.stringify({ email: email, password: password, confirmPassword: confirmPassword }),
 		contentType: 'application/json',  // specify the content type
+		beforeSend: function() {
+            
+            $('.lds-ring').show();
+        },
 		success: function (response) {
 			// Handle success here
 			console.log('User created:', response ? response : 'Empty');
@@ -44,6 +48,10 @@ $('#myform').on('submit', function (e) {
 				}
 			}
 		},
+		complete: function() {
+           
+            $('.lds-ring').hide();
+        },
 	});
 });
 

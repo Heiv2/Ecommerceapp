@@ -10,12 +10,27 @@ $('#myloginform').on('submit', function (e) {
 	// Clear previous error messages
 	$emailError.text('');
 	$passwordError.text('');
-    
+
+	if (!email && !password) {
+		$emailError.text('Email and password fields are required');
+		return;
+	} else if (!email) {
+		$emailError.text('Email is required');
+		return;
+	} else if (!password) {
+		$passwordError.text('Password is required');
+		return;
+	}
+
 	$.ajax({
 		type: 'POST',
 		url: '/logIn',
-		data: JSON.stringify({ email: email, password: password}),
+		data: JSON.stringify({ email: email, password: password }),
 		contentType: 'application/json',  // specify the content type
+		beforeSend: function () {
+
+			$('.lds-ring').show();
+		},
 		success: function (response) {
 			// Handle success here
 			console.log('User logged in:', response ? response : 'Empty');
@@ -25,7 +40,7 @@ $('#myloginform').on('submit', function (e) {
 		error: function (jqXHR, textStatus, errorThrown) {
 			// Handle error here
 			console.log('Error:', errorThrown);
-		
+
 			// Display the error message in the appropriate HTML element
 			if (jqXHR.responseJSON && jqXHR.responseJSON.errors) {
 				const errors = jqXHR.responseJSON.errors;
@@ -33,6 +48,9 @@ $('#myloginform').on('submit', function (e) {
 					$emailError.text(errors.email || errors.password);
 				}
 			}
+		},
+		complete: function () {
+			$('.lds-ring').hide();
 		},
 	});
 });
